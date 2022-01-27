@@ -2,10 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 
-// img
-import can from "./can.jpg";
-import miniCoke from "./miniCoke.jpg";
-import zeroCan from "./zeroCan.jpg";
+
 
 // data
 import productData from "./data";
@@ -48,25 +45,20 @@ function App() {
 
       <div className="container">
         <div className="row">
-          <div className="col-md-4">
-            <img src={ can } width="100%" alt="can"/>
-            <h4>{ products[0].title }</h4>
-            <p>{ products[0].content } & { products[0].price }</p>
-          </div>
-          <div className="col-md-4">
-            <img src={ miniCoke } width="100%" alt="miniCoke"/>
-            <h4>{ products[1].title }</h4>
-            <p>{ products[1].content } & { products[1].price }</p>
-          </div>
-          <div className="col-md-4">
-            <img src={ zeroCan } width="100%" alt="zeroCan"/>
-            <h4>{ products[2].title }</h4>
-            <p>{ products[2].content } & { products[2].price }</p>
-          </div>
+          { products.map( (e) =>  <Product image={e.image} title={e.title} content={e.content} price={e.price} /> ) }
         </div>
       </div>
     </div>
   );
+}
+
+function Product(props){
+  return (
+    <div className="col-md-4">
+      <img width="100%" alt="zeroCan"/>
+      <h4>{ props.title }</h4>
+      <p>{ props.content } & { props.price }</p>
+    </div>);
 }
 
 export default App;
