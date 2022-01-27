@@ -1,6 +1,12 @@
 import './App.css';
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown, Jumbotron, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
+
+// img
+import can from "./can.jpg";
+import miniCoke from "./miniCoke.jpg";
+import zeroCan from "./zeroCan.jpg";
+
 
 function App() {
   return (
@@ -24,9 +30,8 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <Jumbotron>
-        <h1>Hello, world!</h1>
+      <div className="background">
+        <h1>~40% Sale</h1>
         <p>
           This is a simple hero unit, a simple jumbotron-style component for calling
           extra attention to featured content or information.
@@ -34,7 +39,28 @@ function App() {
         <p>
           <Button variant="primary">Learn more</Button>
         </p>
-      </Jumbotron>
+      </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <img src={ can } width="100%" alt="can"/>
+            <h4>상품명</h4>
+            <p>상품설명 & 가격</p>
+          </div>
+          <div className="col-md-4">
+            <img src={ miniCoke } width="100%" alt="miniCoke"/>
+            <h4>상품명</h4>
+            <p>상품설명 & 가격</p>
+          </div>
+          <div className="col-md-4">
+            <img src={ zeroCan } width="100%" alt="zeroCan"/>
+            <h4>상품명</h4>
+            <p>상품설명 & 가격</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
