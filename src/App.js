@@ -2,8 +2,6 @@ import './App.css';
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 
-
-
 // data
 import productData from "./data";
 
@@ -45,7 +43,7 @@ function App() {
 
       <div className="container">
         <div className="row">
-          { products.map( (e) =>  <Product image={e.image} title={e.title} content={e.content} price={e.price} /> ) }
+          { products.map( (e) =>  <Product product={ e } /> ) }
         </div>
       </div>
     </div>
@@ -55,9 +53,9 @@ function App() {
 function Product(props){
   return (
     <div className="col-md-4">
-      <img width="100%" alt="zeroCan"/>
-      <h4>{ props.title }</h4>
-      <p>{ props.content } & { props.price }</p>
+      <img src={ props.product.image } width="100%" alt="zeroCan"/>
+      <h4>{ props.product.title }</h4>
+      <p>{ props.product.content } & { props.product.price }</p>
     </div>);
 }
 
