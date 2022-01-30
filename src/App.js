@@ -2,10 +2,10 @@ import './App.css';
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom'
-import Detail from './Detail.js';
+import Detail from './Detail';
 
 // data
-import productData from "./data.js";
+import productData from "./data";
 
 function App() {
 
@@ -19,8 +19,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/">Home</Link>
-              <Link to="/detail">Detail</Link>
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link as={Link} to="/detail">Detail</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -53,7 +53,7 @@ function App() {
       </Route>
 
       <Route path="/detail/:id">
-        <Detail products={ products } />
+        <Detail products={products} />
       </Route>
 
     </div>
