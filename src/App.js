@@ -2,10 +2,10 @@ import './App.css';
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom'
-import Detail from './Detail';
+import Detail from './Detail.js';
 
 // data
-import productData from "./data";
+import productData from "./data.js";
 
 function App() {
 
@@ -19,8 +19,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link> <Link to="/">Home</Link> </Nav.Link>
-              <Nav.Link> <Link to="/detail">Detail</Link> </Nav.Link>
+              <Link to="/">Home</Link>
+              <Link to="/detail">Detail</Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -47,13 +47,13 @@ function App() {
 
         <div className="container">
           <div className="row">
-            { products.map( (e) =>  <Product product={ e } /> ) }
+            { products.map( (e, i) =>  <Product key={i} product={ e } /> ) }
           </div>
         </div>
       </Route>
 
       <Route path="/detail/:id">
-        <Detail product={products} />
+        <Detail products={ products } />
       </Route>
 
     </div>
