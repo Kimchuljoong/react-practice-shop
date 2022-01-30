@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+//css
+import './Detail.scss';
 
 let TitleBox = styled.div`
   padding : 20px;
@@ -11,16 +14,26 @@ let Title = styled.h4`
 `;
 
 function Detail(props){
+    
+    useEffect( () => {
+      let timer = setTimeout(() => {
+        setAlert(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }, [alert]);
+
+    let [alert, setAlert] = useState(true);
 
     let { id } = useParams();
-    console.log("id: " + id);
     let history = useHistory();
 
     // 대상 상품을 찾음
     // let product = props.shoes.find(function(e){
     //     return e.id === id; // 해당 아이디와 일치하는 대상을 찾음 경우 return true 인 경우 해당 객체 반환
     //   });
-    let product = props.products.find( (e) => e.id == id ); // 해당 아이디와 일치하는 대상을 찾음 경우 return true 인 경우 해당 객체 반환
+    
+    let product = props.products.find( (e) => parseInt(e.id) === parseInt(id)); // 해당 아이디와 일치하는 대상을 찾음 경우 return true 인 경우 해당 객체 반환
     
     return(
         <div className="container">
@@ -28,6 +41,13 @@ function Detail(props){
           <TitleBox>
             <Title>상세페이지</Title>
           </TitleBox>
+
+          {alert
+            ? (<div className="saleAlert">
+                <p>재고가 얼마 남지 않았습니다!</p>
+               </div>)
+            : null
+          }
 
           <div className="row">
             <div className="col-md-6">

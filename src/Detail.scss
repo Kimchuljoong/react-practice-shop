@@ -1,0 +1,17 @@
+.alert {
+  background: #eeeeee;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+.saleAlert {
+  @extend .alert;
+  background: #ffe591;
+}
+
+.saleAlert p {
+  margin-bottom: 0;
+}
