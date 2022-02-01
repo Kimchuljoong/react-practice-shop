@@ -59,7 +59,7 @@ function Detail(props){
               <p>{ product.price }원</p>
               <Info remains={props.remains} id={id}/>
               <button className="btn btn-danger" onClick={ () => {
-                let cpRemains = [...props.remains,];
+                let cpRemains = [...props.remains];
                 cpRemains[id]--;
                 props.setRemains(cpRemains);
               }}>주문하기</button>

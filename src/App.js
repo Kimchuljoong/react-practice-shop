@@ -49,7 +49,7 @@ function App() {
 
         <div className="container">
           <div className="row">
-            { products.map( (e, i) =>  <Product key={i} product={ e } setRemains={setRemains} /> ) }
+            { products.map( (e, i) =>  <Product key={i} product={ e } /> ) }
 
           </div>
         </div>
@@ -62,7 +62,7 @@ function App() {
       </Route>
 
       <Route path="/detail/:id">
-        <Detail products={products} remains={remains} />
+        <Detail products={products} remains={remains} setRemains={setRemains} />
       </Route>
 
     </div>
