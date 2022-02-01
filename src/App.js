@@ -7,6 +7,7 @@ import Detail from './Detail';
 
 // data
 import productData from "./data";
+import Cart from './Cart';
 
 function App() {
 
@@ -63,6 +64,10 @@ function App() {
 
       <Route path="/detail/:id">
         <Detail products={products} remains={remains} setRemains={setRemains} />
+      </Route>
+
+      <Route path="/cart">
+        <Cart />
       </Route>
 
     </div>
