@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom'
+import axios from 'axios';
 import Detail from './Detail';
 
 // data
@@ -10,6 +11,7 @@ import productData from "./data";
 function App() {
 
   let [products, setProducts] = useState(productData);
+  let [remains, setRemains] = useState([10,2,3,1,10,3]);
 
   return (
     <div className="App">
@@ -48,12 +50,19 @@ function App() {
         <div className="container">
           <div className="row">
             { products.map( (e, i) =>  <Product key={i} product={ e } /> ) }
+
           </div>
         </div>
+        <button className="btn btn-primary" onClick={() => {
+          axios.get("https://codingapple1.github.io/shop/data2.json")
+          .then( (result) => { setProducts( [...products, ...result.data] ) } )
+          .catch( () => { console.log("조회 실패") } );
+        }}>더보기</button>
+
       </Route>
 
       <Route path="/detail/:id">
-        <Detail products={products} />
+        <Detail products={products} remains={remains} setRemains={setRemains} />
       </Route>
 
     </div>

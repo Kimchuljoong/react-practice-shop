@@ -14,6 +14,11 @@ let Title = styled.h4`
 `;
 
 function Detail(props){
+
+    let [alert, setAlert] = useState(true);
+
+    let { id } = useParams();
+    let history = useHistory();
     
     useEffect( () => {
       let timer = setTimeout(() => {
@@ -22,11 +27,6 @@ function Detail(props){
 
       return () => clearTimeout(timer);
     }, [alert]);
-
-    let [alert, setAlert] = useState(true);
-
-    let { id } = useParams();
-    let history = useHistory();
 
     // 대상 상품을 찾음
     // let product = props.shoes.find(function(e){
@@ -57,7 +57,12 @@ function Detail(props){
               <h4 className="pt-5">{ product.title }</h4>
               <p>{ product.content }</p>
               <p>{ product.price }원</p>
-              <button className="btn btn-danger">주문하기</button>
+              <Info remains={props.remains} id={id}/>
+              <button className="btn btn-danger" onClick={ () => {
+                let cpRemains = [...props.remains];
+                cpRemains[id]--;
+                props.setRemains(cpRemains);
+              }}>주문하기</button>
               <button className="btn btn-danger" onClick={ ()=> {
                   history.goBack();
                 //   history.push("/"); // push는 특정 경로로 이동 시킨다
@@ -66,6 +71,12 @@ function Detail(props){
           </div>
         </div>
     );
+}
+
+function Info(props){
+  return (
+    <p>재고 : {props.remains[props.id]}</p>
+  )
 }
 
 export default Detail;
