@@ -1,8 +1,12 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 function Cart(props) {
+
+    let state = useSelector( (state) => state );
+    let dispatch = useDispatch();
+
     return (
         <div>
             <Table responsive>
@@ -16,12 +20,19 @@ function Cart(props) {
                 </thead>
                 <tbody>
 
-                    { props.state.map( (e, i) => (
+                    { state.reducer.map( (e, i) => (
                         <tr key={i}>
                         <td>{ e.id }</td>
                         <td>{ e.name }</td>
-                        <td>{ e.quan }</td>
-                        <td> </td>
+                        <td>
+                            <button onClick={ () => {
+                                dispatch({type: "addQuan", payload: {index: i}});
+                            } }>+</button>
+                            &nbsp;&nbsp;{ e.quan }&nbsp;&nbsp;
+                            <button onClick={ () => {
+                                dispatch({type: "subQuan", payload: {index: i}});
+                            } }>-</button>
+                        </td>
                         </tr>
                      )
                     )}
@@ -32,10 +43,11 @@ function Cart(props) {
     );
 }
 
-function getOrder(state) {
-    return {
-        state : state
-    }
-}
+// function getOrder(state) {
+//     return {
+//         state : state
+//     }
+// }
 
-export default connect(getOrder)(Cart);
+// export default connect(getOrder)(Cart);
+export default Cart;
