@@ -16,8 +16,8 @@ function Cart(props) {
                 </thead>
                 <tbody>
 
-                    { props.state.map( (e) => (
-                        <tr>
+                    { props.state.map( (e, i) => (
+                        <tr key={i}>
                         <td>{ e.id }</td>
                         <td>{ e.name }</td>
                         <td>{ e.quan }</td>
@@ -25,7 +25,7 @@ function Cart(props) {
                         </tr>
                      )
                     )}
-                    
+
                 </tbody>
             </Table>
         </div>

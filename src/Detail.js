@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 
 //css
@@ -16,6 +17,7 @@ let Title = styled.h4`
 function Detail(props){
 
     let [alert, setAlert] = useState(true);
+    let [tabNum, setTabNum] = useState(0);
 
     let { id } = useParams();
     let history = useHistory();
@@ -69,6 +71,17 @@ function Detail(props){
               }}>뒤로가기</button>
             </div>
           </div>
+
+          <Nav variant="tabs" defaultActiveKey="link-0" >
+            <Nav.Item>
+              <Nav.Link eventKey="link-0" onClick={ () => setTabNum(0) }>상품설명</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-1" onClick={ () => setTabNum(1) }>리뷰</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <TabContent style={{display: "inline-block"} } tabNum={ tabNum } />
+
         </div>
     );
 }
@@ -77,6 +90,15 @@ function Info(props){
   return (
     <p>재고 : {props.remains[props.id]}</p>
   )
+}
+
+function TabContent(props){
+
+  if (props.tabNum === 0){
+    return <div>상품설명입니다.<br/>코카콜라는 맛있습니다. </div>
+  } else if (props.tabNum === 1){
+    return <div>리뷰칸</div>
+  }
 }
 
 export default Detail;
